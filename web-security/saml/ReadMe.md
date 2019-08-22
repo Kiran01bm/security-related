@@ -42,13 +42,13 @@ If you are building a multi-tenant SaaS App where you want to integrate with Ten
 
 A key consideration involves the ACSurl endpoint on the SP side where SAML responses are posted. It is **possible** to expose a **single endpoint** even when dealing with multiple IDPs. For a single-instance multi-tenant application where the tenancy is not defined in the URL (such as via a subdomain), this might be a simpler way to implement. However, you must then rely on additional information in the SAML response to determine which IDP is trying to authenticate (for example, using the IssuerID). If your application is architected in a multi-tenant fashion with domain information in the URL (for example, https://domain1.myISV.com or https://www.myISV.com/domain1), then having an ACSurl endpoint for each subdomain might be a good option since the URL itself identifies the domain.
 
-[MultiTenant SP with subdomains](images/multTenantSP.png)
+![MultiTenant SP with subdomains](images/multTenantSP.png)
 
 ## Relay State
 A RelayState is an HTTP parameter that can be included as part of the SAML request and SAML response. In an SP-initiated login flow, the SP can set the RelayState parameter in the SAML request with additional information about the request. A SAML IDP, upon receiving the SAML request, will take the RelayState value and simply attach it back as a HTTP parameter in the SAML response after the user has been authenticated. This way, when the round trip completes, the SP can use the RelayState information to get additional context about the initial SAML authentication request.
 
 In the case of a deep link, the SP sets the RelayState of the SAML request with the deep-link value. When the SAML response comes back, the SP can use the RelayState value and take the authenticated user to the right resource.
-[Relay State flow](images/relayStateFlow.png)
+![Relay State flow](images/relayStateFlow.png)
 
 ## Implementing a Back Door
 This is particularly important where the entire population is intended to be SAML-enabled in your application. Sometimes, there might be a mistake in the SAML configuration – or something changes in SAML IDP endpoints. In any case, you do not want to be completely locked out. Having a backdoor available for administrator(s) to use to access a locked system becomes extremely important. 
