@@ -1,5 +1,6 @@
 ## Summary
 
+```
 Cryptographic primitive | Hash |    MAC    | Digital
 Security Goal           |      |           | signature
 ------------------------+------+-----------+-------------
@@ -9,3 +10,4 @@ Non-repudiation         |  No  |    No     |   Yes
 ------------------------+------+-----------+-------------
 Kind of keys            | none | symmetric | asymmetric
                         |      |    keys   |    keys
+```
